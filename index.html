@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student System</title>
+    <link rel="stylesheet" href="assets/tailwind.min.css">
+</head>
+<body class="bg-gray-200">
+    
+    <div id="app">
+
+        <div class="w-2/3 bg-white mx-auto shadow-lg rounded-lg mt-4 p-4">
+
+            <h4 class="text-2xl text-center">Grading System</h4>
+
+            <div class="mt-4 flex space-x-2">
+                <input type="text" placeholder="Search" id="search" @input="search($event)" class="px-3 py-2 outline-none ring-1 focus:ring">
+                <button class="text-white bg-purple-700 px-4 py-2 uppercase  hover:bg-purple-500" @click="isAdding=true">Add</button>
+            </div>
+
+            <div class="mt-4" v-if="!isAdding">
+                <table class="table w-full">
+
+                    <thead>
+                     <tr class="uppercase">
+                        <th class="border border-gray-200 p-2">Id</th>
+                        <th class="border border-gray-200 p-2">Name</th>
+                        <th class="border border-gray-200 p-2">Class</th>
+                        <th class="border border-gray-200 p-2">Grade</th>
+                     </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <!-- <tr>
+                            <td class="border border-gray-200 p-2">1</td>
+                            <td class="border border-gray-200 p-2">Khaalid Nuur Diiriye</td>
+                            <td class="border border-gray-200 p-2">8C</td>
+                            <td class="border border-gray-200 p-2">96</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-200 p-2">2</td>
+                            <td class="border border-gray-200 p-2">Deeq Hassan Nuur</td>
+                            <td class="border border-gray-200 p-2">8C</td>
+                            <td class="border border-gray-200 p-2">95</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-200 p-2">3</td>
+                            <td class="border border-gray-200 p-2">Hassan Aadan Samatar</td>
+                            <td class="border border-gray-200 p-2">8A</td>
+                            <td class="border border-gray-200 p-2">94</td>
+                        </tr> -->
+                        <tr v-for="Student in students">
+                            <td class="border border-gray-200 p-2">{{Student.id}}</td>
+                            <td class="border border-gray-200 p-2">{{Student.name}}</td>
+                            <td class="border border-gray-200 p-2 uppercase">{{Student.className}}</td>
+                            <td class="border border-gray-200 p-2">
+                                <span v-if="Student.grade >=50">{{Student.grade}}</span>
+                                <span v-else class="text-red-500">{{Student.grade}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <div class="mt-4 flex gap-x-3" v-else>
+             <!-- <input type="number" class="px-3 py-2 outline-none ring-1  focus:ring" placeholder="Id"    v-model="id"  > -->
+             <input type="text" class="px-3 py-2 outline-none   ring-1    focus:ring" placeholder="Name"  v-model="name" >
+             <input type="text" class="px-3 py-2 outline-none   ring-1    focus:ring" placeholder="Class" v-model="className" >
+             <input type="number" class="px-3 py-2 outline-none ring-1  focus:ring" placeholder="Grade" v-model="grade" >
+             <button type="submit" class="text-white bg-green-700 px-4 py-2 uppercase hover:bg-green-500 " @Click="save()">Save</button>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script src="assets/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
